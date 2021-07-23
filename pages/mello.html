@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mello</title>
+    <link rel="stylesheet" href="../css/mello.css" />
+  </head>
+  <body>
+    <h1 class="welcome">Welcome</h1>
+
+    <div class="add">
+      <button id="addBtn" onclick="add()">Add</button>
+      <textarea id="inpText" rows="4" cols="50"></textarea>
+        <select name="addTo" id="addTo">
+        <option value="todo">todo</option>
+        <option value="doing">doing</option>
+        <option value="done">done</option>
+      </select>
+    </div>
+
+    <div class="main">
+      <div id="todo">
+        <h1>To do</h1>
+        <div id="content todo">
+          
+        </div>
+      </div>
+      <div id="doing">
+        <h1>Doing</h1>
+        <div id="content doing">
+          
+        </div>
+      </div>
+      <div id="done">
+        <h1>Done</h1>
+        <div id="content done">
+         
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- <div class="card">
+      <div class="container">
+        <button id="cross">X</button>
+        <p>lorem30</p> 
+        <select>
+          <option value="doing">doing</option>
+          <option value="done">done</option>
+        </select>
+        <button id="move">move</button>
+      </div>
+    </div> -->
+
+    <script src="../js/mello.js"></script>
+  </body>
+</html>

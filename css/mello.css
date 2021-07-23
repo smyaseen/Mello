@@ -1,0 +1,74 @@
+body {
+  background-color: lightgreen;
+}
+
+.main {
+  width: 70%;
+  text-align: center;
+  position: relative;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#todo,
+#doing,
+#done {
+  position: relative;
+  left: 35%;
+  float: left;
+  margin: 40px 40px 0px 0px;
+}
+
+.add {
+  text-align: center;
+}
+
+#addBtn {
+  cursor: pointer;
+  color: white;
+  background-color: blue;
+  padding: 5px;
+}
+
+#addBtn:hover {
+  background-color: white;
+  color: blue;
+}
+
+.welcome {
+  text-align: center;
+}
+
+#inpText {
+  position: relative;
+  top: 10px;
+}
+
+.card {
+  background-color: lightgoldenrodyellow;
+  color: black;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.container {
+  padding: 2px 16px;
+  position: relative;
+}
+
+#cross {
+  cursor: pointer;
+  position: absolute;
+  right: 0%;
+  top: 0%;
+  background-color: greenyellow;
+  color: red;
+  font-weight: bold;
+  border-bottom-left-radius: 10px;
+}
