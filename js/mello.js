@@ -1,3 +1,7 @@
+var modal = document.getElementById("myModal");
+var span = document.getElementsByClassName("close")[0];
+var activeCloseButton;
+
 function add() {
   var select = document.getElementById("addTo");
 
@@ -11,6 +15,8 @@ function add() {
 }
 
 function addCell(option1, option2, addTo) {
+  if (!document.getElementById("inpText").value) return;
+
   var p = document.createElement("p");
   p.innerHTML = document.getElementById("inpText").value;
 
@@ -18,9 +24,8 @@ function addCell(option1, option2, addTo) {
   btn.innerHTML = "X";
   btn.id = "cross";
   btn.onclick = function () {
-    remove(this);
+    showModal(this);
   };
-
   var select = document.createElement("select");
   select.name = "move";
   select.id = "move";
@@ -58,9 +63,19 @@ function addCell(option1, option2, addTo) {
   document.getElementById("content " + addTo).appendChild(card);
 }
 
-function remove(btn) {
-  btn.closest(".card").remove();
+function showModal(btn) {
+  modal.style.display = "block";
+  activeCloseButton = btn;
 }
+
+document.getElementById("yes").onclick = function () {
+  modal.style.display = "none";
+  activeCloseButton.closest(".card").remove();
+};
+
+document.getElementById("no").onclick = function () {
+  modal.style.display = "none";
+};
 
 function moveTo(btn) {
   var value = btn.closest(".container").querySelector("select").value;
