@@ -89,17 +89,25 @@ function moveTo(btn) {
     handleSelect(select, "doing", origin);
     document.getElementById("content doing").appendChild(card);
   } else if (value === "done") {
+    console.log(origin);
     handleSelect(select, "done", origin);
     document.getElementById("content done").appendChild(card);
   }
 }
 
 function handleSelect(select, remove, add) {
+  var opt;
+
   if (select.options[0].value === remove) {
-    select.options[0].remove();
-    var option = document.createElement("option");
-    option.innerHTML = add;
-    option.value = add;
-    select.add(option);
+    opt = select.options[0];
+  } else {
+    opt = select.options[1];
   }
+
+  opt.remove();
+
+  var option = document.createElement("option");
+  option.innerHTML = add;
+  option.value = add;
+  select.add(option);
 }
