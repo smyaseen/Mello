@@ -1,66 +1,97 @@
+if (!document.cookie) window.location.href = "../pages/login.html";
+
 var modal = document.getElementById("myModal");
 var span = document.getElementsByClassName("close")[0];
 var activeCloseButton;
+var optionElementList = ["todo", "doing", "done"];
 
-function add() {
-  var select = document.getElementById("addTo");
+document.querySelector(".welcome").innerHTML =
+  "Welcome " + document.cookie.split(",")[0].split("=")[1];
 
-  if (select.value === "todo") {
-    addCell("doing", "done", "todo");
-  } else if (select.value === "doing") {
-    addCell("todo", "done", "doing");
-  } else {
-    addCell("todo", "doing", "done");
+addOptionsToSelect(document.getElementById("addTo"));
+
+function addOptionsToSelect(selectElement, addToSection) {
+  console.log(selectElement);
+  for (let index = 0; index < optionElementList.length; index++) {
+    if (optionElementList[index] === addToSection) continue;
+
+    var option = createHTMLElement(
+      "option",
+      "",
+      "",
+      optionElementList[index],
+      optionElementList[index]
+    );
+    selectElement.appendChild(option);
   }
 }
 
-function addCell(option1, option2, addTo) {
+function createHTMLElement(
+  elementTagName,
+  elementID,
+  elementClassName,
+  elementValue,
+  elementInnerHTML
+) {
+  var element = document.createElement(elementTagName);
+
+  if (elementID) {
+    element.id = elementID;
+  }
+
+  if (elementClassName) {
+    element.className = elementClassName;
+  }
+
+  if (elementValue) {
+    element.value = elementValue;
+  }
+
+  if (elementInnerHTML) {
+    element.innerHTML = elementInnerHTML;
+  }
+
+  return element;
+}
+
+function createCard() {
   if (!document.getElementById("inpText").value) return;
 
-  var p = document.createElement("p");
-  p.innerHTML = document.getElementById("inpText").value;
+  var addToSection = document.getElementById("addTo").value;
 
-  var btn = document.createElement("Button");
-  btn.innerHTML = "X";
-  btn.id = "cross";
-  btn.onclick = function () {
+  var taskText = createHTMLElement(
+    "p",
+    "",
+    "",
+    "",
+    document.getElementById("inpText").value
+  );
+
+  var deleteButton = createHTMLElement("button", "cross", "", "", "X");
+
+  deleteButton.onclick = function () {
     showModal(this);
   };
-  var select = document.createElement("select");
-  select.name = "move";
-  select.id = "move";
 
-  var opt1 = document.createElement("option");
-  opt1.value = option1;
-  opt1.innerHTML = option1;
+  var moveSelect = createHTMLElement("select", "move", "", "", "");
+  addOptionsToSelect(moveSelect, addToSection);
 
-  var opt2 = document.createElement("option");
-  opt2.value = option2;
-  opt2.innerHTML = option2;
-
-  select.appendChild(opt1);
-  select.appendChild(opt2);
-
-  var moveBtn = document.createElement("Button");
-  moveBtn.innerHTML = "move";
-  moveBtn.id = "moveBtn";
+  var moveBtn = createHTMLElement("button", "moveBtn", "", "", "move");
   moveBtn.onclick = function () {
     moveTo(this);
   };
 
-  var container = document.createElement("div");
-  container.className = "container";
+  var container = createHTMLElement("div", "", "container", "", "");
 
-  var card = document.createElement("div");
-  card.className = "card";
+  var cardDiv = createHTMLElement("div", "", "card", "", "");
 
-  container.appendChild(btn);
-  container.appendChild(p);
-  container.appendChild(select);
+  container.appendChild(deleteButton);
+  container.appendChild(taskText);
+  container.appendChild(moveSelect);
   container.appendChild(moveBtn);
-  card.appendChild(container);
+  cardDiv.appendChild(container);
 
-  document.getElementById("content " + addTo).appendChild(card);
+  document.getElementById("content " + addToSection).appendChild(cardDiv);
 }
 
 function showModal(btn) {
@@ -83,46 +114,51 @@ function moveTo(btn) {
   var card = btn.closest(".container").parentElement;
 
   var origin = btn.closest(".container").parentElement.parentElement.id;
-  console.log(origin);
 
-  if (origin.includes("todo")) {
-    origin = "todo";
-  } else if (origin.includes("doing")) {
-    origin = "doing";
-  } else if (origin.includes("done")) {
-    origin = "done";
+  for (let index = 0; index < optionElementList.length; index++) {
+    if (origin.includes(optionElementList[index])) {
+      origin = optionElementList[index];
+    }
   }
 
   card.remove();
-
+  //CHANGE FROM HERE
   var select = card.querySelector("#move");
 
   if (value === "todo") {
-    handleSelect(select, "todo", origin);
+    handleMoveSelectOptionsWhenMoved(select, "todo", origin);
     document.getElementById("content todo").appendChild(card);
   } else if (value === "doing") {
-    handleSelect(select, "doing", origin);
+    handleMoveSelectOptionsWhenMoved(select, "doing", origin);
     document.getElementById("content doing").appendChild(card);
   } else if (value === "done") {
     console.log(origin);
-    handleSelect(select, "done", origin);
+    handleMoveSelectOptionsWhenMoved(select, "done", origin);
     document.getElementById("content done").appendChild(card);
   }
 }
 
-function handleSelect(select, remove, add) {
-  var opt;
+function handleMoveSelectOptionsWhenMoved(
+  selectElement,
+  removeOption,
+  addOption
+) {
+  var optionToRemove;
 
-  if (select.options[0].value === remove) {
-    opt = select.options[0];
+  if (selectElement.options[0].value === removeOption) {
+    optionToRemove = selectElement.options[0];
   } else {
-    opt = select.options[1];
+    optionToRemove = selectElement.options[1];
   }
 
-  opt.remove();
+  optionToRemove.remove();
 
-  var option = document.createElement("option");
-  option.innerHTML = add;
-  option.value = add;
-  select.add(option);
+  var option = createHTMLElement("option", "", "", addOption, addOption);
+
+  selectElement.add(option);
+}
+
+function logout() {
+  document.cookie = "name=,userID=;expires=Thu, 01 Jan 1970 00:00:00 GMT;";
+  window.location.href = "";
 }

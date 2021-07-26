@@ -8,33 +8,32 @@
     <link rel="stylesheet" href="../css/mello.css" />
   </head>
   <body>
-    <h1 class="welcome">Welcome</h1>
+    <h3 class="welcome"></h3>
+    <button id="logout" onclick="logout()">logout</button>
 
     <div class="add">
-      <button id="addBtn" onclick="add()">Add</button>
       <textarea id="inpText" rows="4" cols="50"></textarea>
-        <select name="addTo" id="addTo">
-        <option value="todo">todo</option>
-        <option value="doing">doing</option>
-        <option value="done">done</option>
+      <select name="addTo" id="addTo">
+       
       </select>
+      <button id="addBtn" onclick="createCard()">Add</button>
     </div>
 
     <div class="main">
-      <div id="todo">
-        <h1>To do</h1>
+      <div id="todo" >
+        <h1 class="todo-heading">To do</h1>
         <div id="content todo">
           
         </div>
       </div>
-      <div id="doing">
-        <h1>Doing</h1>
+      <div id="doing" >
+        <h1 class="doing-heading">Doing</h1>
         <div id="content doing">
           
         </div>
       </div>
       <div id="done">
-        <h1>Done</h1>
+        <h1 class="done-heading">Done</h1>
         <div id="content done">
          
           </div>

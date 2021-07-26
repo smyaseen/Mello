@@ -16,9 +16,16 @@ body {
 #doing,
 #done {
   position: relative;
-  left: 35%;
+  left: 10%;
   float: left;
-  margin: 40px 40px 0px 0px;
+  width: 23%;
+  /* display: inline-block; */
+  margin-top: 40px;
+}
+
+.todo-heading,
+.doing-heading {
+  border-right: 3px solid black;
 }
 
 .add {
@@ -37,8 +44,11 @@ body {
   color: blue;
 }
 
-.welcome {
-  text-align: center;
+#logout {
+  cursor: pointer;
+  position: absolute;
+  top: 5%;
+  right: 2%;
 }
 
 #inpText {
@@ -51,10 +61,15 @@ body {
   color: black;
   border-radius: 10px;
   margin-bottom: 20px;
+  margin-right: 5px;
 }
 
 .card:hover {
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+#move {
+  margin-right: 3px;
 }
 
 .container {
@@ -67,10 +82,10 @@ body {
   position: absolute;
   right: 0%;
   top: 0%;
-  background-color: greenyellow;
+  background-color: transparent;
   color: red;
   font-weight: bold;
-  border-bottom-left-radius: 10px;
+  border: 0px;
 }
 
 .modal {
