@@ -56,8 +56,8 @@ body {
   margin-bottom: 40px;
 }
 
-.email,
-.pass {
+#email,
+#pass {
   margin: 5px;
   border-radius: 10px;
   height: 20px;
@@ -70,8 +70,8 @@ body {
   color: white;
 }
 
-.email::placeholder,
-.pass::placeholder {
+#email::placeholder,
+#pass::placeholder {
   color: white;
   opacity: 1;
 }
