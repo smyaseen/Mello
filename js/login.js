@@ -8,7 +8,7 @@ if (document.cookie) {
 
 function getAPIAndParseJSON() {
   let url =
-    "https://30da33c9-2d02-4d7c-a10b-93fe29f0fdf6.mock.pstmn.io/v1/users";
+    "https://b3f2e9d6-d881-4841-921d-22f2c043fdcd.mock.pstmn.io/v1/users";
 
   fetch(url)
     .then((res) => res.json())
@@ -38,7 +38,7 @@ function login() {
       console.log(users[index].password);
       userFound = true;
       var date = new Date();
-      date.setTime(date.getTime() + 1 * 60 * 1000);
+      date.setTime(date.getTime() + 5 * 60 * 1000);
       document.cookie =
         "name=" +
         users[index].name +

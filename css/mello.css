@@ -1,45 +1,41 @@
 body {
-  background-color: lightgreen;
+  background-color: #f2e5e7;
 }
 
 .main {
-  width: 70%;
   text-align: center;
   position: relative;
   left: 0;
   right: 0;
   margin-left: auto;
   margin-right: auto;
+  overflow: auto;
 }
 
-#todo,
-#doing,
-#done {
+.section {
   position: relative;
-  left: 10%;
   float: left;
   width: 23%;
-  /* display: inline-block; */
   margin-top: 40px;
 }
 
-.todo-heading,
-.doing-heading {
+.main .section .heading {
   border-right: 3px solid black;
 }
 
-.add {
-  text-align: center;
+h1:nth-child(0) {
+  display: none;
+  border: 0px !important;
 }
 
-#addBtn {
+.addBtn {
   cursor: pointer;
   color: white;
   background-color: blue;
   padding: 5px;
 }
 
-#addBtn:hover {
+.addBtn:hover {
   background-color: white;
   color: blue;
 }
@@ -49,6 +45,13 @@ body {
   position: absolute;
   top: 5%;
   right: 2%;
+  background-color: tomato;
+}
+
+#logout:hover {
+  cursor: pointer;
+  background-color: white;
+  color: tomato;
 }
 
 #inpText {
@@ -57,11 +60,15 @@ body {
 }
 
 .card {
-  background-color: lightgoldenrodyellow;
+  cursor: pointer;
+  background-color: #d2b9bd;
   color: black;
   border-radius: 10px;
   margin-bottom: 20px;
-  margin-right: 5px;
+  /* margin-right: 5px; */
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
 }
 
 .card:hover {
@@ -109,4 +116,79 @@ body {
   border: 1px solid #888;
   width: 80%;
   text-align: center;
+}
+
+#addModal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.add-modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  text-align: center;
+}
+
+#detailModal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.detail-modal-content {
+  position: relative;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  text-align: center;
+}
+
+#hideDetailModal {
+  cursor: pointer;
+  margin: 2px;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.upArrow {
+  cursor: pointer;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  margin: 2%;
+}
+
+.downArrow {
+  cursor: pointer;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  margin: 2%;
+}
+
+ul {
+  list-style: none;
 }
