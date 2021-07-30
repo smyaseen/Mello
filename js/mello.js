@@ -14,30 +14,52 @@ document.querySelector(".welcome").innerHTML = "Welcome " + userName;
 
 addOptionsToSelect(document.getElementById("addTo"));
 
-function getAPIAndParseJSON() {
-  let url =
-    "https://b3f2e9d6-d881-4841-921d-22f2c043fdcd.mock.pstmn.io/v1/cards";
+const getAPIAndParseJSON = async () => {
+  try {
+    const res = await fetch(
+      "https://b3f2e9d6-d881-4841-921d-22f2c043fdcd.mock.pstmn.io/v1/cards"
+    );
 
-  fetch(url)
-    .then((res) => res.json())
-    .then((out) => {
-      for (var i = 0; i < out.length; i++) {
-        if (out[i].userID === userID) {
-          cards.push({
-            cardID: out[i].cardID,
-            task: out[i].task,
-            section: out[i].section,
-          });
-        }
-      }
-      loadData();
-    })
-    .catch((err) => {
-      throw err;
-    });
-}
+    const data = await res.json();
+
+    for (var i = 0; i < data.length; i++) {
+      cards.push({
+        cardID: data[i].cardID,
+        task: data[i].task,
+        section: data[i].section,
+      });
+    }
+
+    loadData();
+  } catch (err) {
+    console.error(err);
+  }
+};
 
 getAPIAndParseJSON();
+
+// function getAPIAndParseJSON() {
+//   let url =
+//     "https://b3f2e9d6-d881-4841-921d-22f2c043fdcd.mock.pstmn.io/v1/cards";
+
+//   fetch(url)
+//     .then((res) => res.json())
+//     .then((out) => {
+//       for (var i = 0; i < out.length; i++) {
+//         if (out[i].userID === userID) {
+//           cards.push({
+//             cardID: out[i].cardID,
+//             task: out[i].task,
+//             section: out[i].section,
+//           });
+//         }
+//       }
+//       loadData();
+//     })
+//     .catch((err) => {
+//       throw err;
+//     });
+// }
 
 function addOptionsToSelect(selectElement, addToSection) {
   for (let index = 0; index < optionElementList.length; index++) {
@@ -366,6 +388,8 @@ function moveTo(btn) {
 
   handleMoveSelectOptionsWhenMoved(select, value, origin);
   document.getElementById("content " + value).appendChild(card);
+
+  handleArrows(document.getElementById("content " + value));
 }
 
 function handleMoveSelectOptionsWhenMoved(
